@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="arquivo.css">
+<title> site mercado</title>
+</head>
+<body >
+<main id="main">
+<h1>mercado</h1>
+nome do produto:<input type="text"id="produto"><br>
+<input type="button"value="pesquisar preço"onclick="pesquisar()">
+<p id="res"></p>
+
+</main>
+
+
+
+<script>
+var nomepro=''
+var lista=[{batata:6}]
+var res=document.getElementById('res')
+var m=document.getElementById('main')
+
+function pesquisar(){
+var acho=false
+var nome=document.getElementById('produto')
+var produto=nome.value
+nomepro=produto
+
+for(let cont in lista){
+if(produto in lista[cont]){
+res.innerHTML=`o produto;${produto} vale;${lista[cont][produto]}R$`
+acho=true
+}
+
+if(!acho){
+res.innerHTML=`produto nao achado<br>
+quer adicionar o produto?<br><input type="button"value="sim" onclick="adicionar('sim')">
+<input type="button" value="nao" onclick="adicionar('nao')">`
+
+}
+}
+}
+function adicionar(p){
+if(p=="sim"){
+res.innerHTML=`qual o preço:<input type="number"id="preço"><input type='button'value='add'onclick="add()">`
+
+
+}
+if(p=='nao'){
+res.innerHTML=``
+}
+}
+
+function add(){
+
+var pre=document.getElementById('preço')
+var preço=Number(pre.value)
+lista.push({[nomepro]:preço})
+res.innerHTML=''
+}
+
+</script>
+</body>
+</html>
